@@ -25,16 +25,19 @@ public class AddPhoneServlet extends HttpServlet{
         try {
         
             phoneBook.readFile();
+            ;
             PrintWriter out = response.getWriter();
             out.println("<html>\n<body>\n");
         
             String phone = "phone";
             String name = "name";
+            String image = request.getParameter("Avatar");
+            
             
        
-
     	    if (!(phoneBook.containPhone(request.getParameter(name), request.getParameter(phone)))) {
                 phoneBook.addPhoneNumber(request.getParameter(name), request.getParameter(phone));
+                phoneBook.addUsersAvatar(request.getParameter(name), image);
                 phoneBook.writeFile();
                 response.sendRedirect("PhoneBook");
 		}		

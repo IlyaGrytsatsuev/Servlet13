@@ -26,7 +26,9 @@ public class PhoneBookServlet extends HttpServlet{
         try {
             phoneBook.readFile();
             HashMap<String, ArrayList<String>> tmp = phoneBook.getPhoneBook();
+            HashMap<String, String> tmp2 = phoneBook.getAvatarsList();
             request.setAttribute("phonelist", tmp);
+            request.setAttribute("AvatarsList", tmp2);
             RequestDispatcher rd = request.getRequestDispatcher("PhoneBook.jsp");
             rd.forward(request, response);
             

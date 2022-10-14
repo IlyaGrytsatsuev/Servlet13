@@ -17,10 +17,12 @@
   <hr>
   
   <%HashMap<String, ArrayList<String>> phonelist = (HashMap<String, ArrayList<String>>)request.getAttribute("phonelist");
+  HashMap<String, String> AvatarsList = (HashMap<String, String>)request.getAttribute("AvatarsList");
   
   if(phonelist.size() != 0){
   
   for (String key : phonelist.keySet()) {
+  	String img = AvatarsList.get(key);
   	StringBuilder sb = new StringBuilder();
   	String prefix = "";
   	sb.append(key).append(": ");
@@ -33,6 +35,8 @@
   	}
   	String txt = sb.toString();
   %>
+  	<img src= "<%=img%>" width="50" 
+     height="50"
 	<p><%=txt%></p>
 <%}
 }

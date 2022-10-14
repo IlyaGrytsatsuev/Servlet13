@@ -4,9 +4,13 @@ import java.io.*;
 public class PhoneBook {
 
     private HashMap<String, ArrayList<String>> phoneList ;
+    private HashMap<String, String> AvatarsList ;
+
+
 
     public PhoneBook() {
         phoneList = new HashMap<>();
+        AvatarsList = new HashMap<>();
     }
 
     synchronized void addPhoneNumber(String name, String phone) {
@@ -23,10 +27,24 @@ public class PhoneBook {
             phoneList.put(name, tmp);
         }
     }
+    
+    synchronized void addUsersAvatar(String name, String num) {
+    	String p = "ServletImages/img";
+    	
+    	AvatarsList.put(name, p + num + ".jpeg");
+        
+    }
 
     HashMap<String, ArrayList<String>> getPhoneBook() {
 
         return phoneList;
+    }
+    
+   
+    
+    HashMap<String, String> getAvatarsList() {
+
+        return AvatarsList;
     }
 
     boolean containName(String name) {
@@ -69,6 +87,19 @@ public class PhoneBook {
                 }
             }
             sc.close();
+            
+            AvatarsList = new HashMap<>();
+            path = "/home/ilya/Desktop/ImagesPaths";
+            list = new File(path);
+            sc = new Scanner(list);
+            
+            while (sc.hasNextLine()) {
+            	String[] tmp = sc.nextLine().split(" ");
+            	AvatarsList.put(tmp[0], tmp[1]);
+            }
+            
+            sc.close();
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -94,6 +125,19 @@ public class PhoneBook {
 
             }
             out.close();
+            
+            String path2 = "/home/ilya/Desktop/ImagesPaths";
+            FileWriter fstream2 = new FileWriter(path2);
+            BufferedWriter out2 = new BufferedWriter(fstream2);
+            
+            for(String key : AvatarsList.keySet()){
+            	
+            	out2.write(key + " " + AvatarsList.get(key) + "\n");
+            
+            }
+            
+            out2.close();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

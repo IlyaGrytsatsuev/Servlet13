@@ -4,6 +4,31 @@
 <body>
 
 <form action="AddPhone" method="post">
+      <fieldset>
+    <legend>Select an Avatar:</legend>
+
+    <div>
+      <input type="radio" name="Avatar" value="1"
+             checked>
+      <label for="Avatar"><img src= "ServletImages/img1.jpeg" width="50" 
+     height="50" >  
+</label>
+    </div>
+
+    <div>
+      <input type="radio"  name="Avatar" value="2">
+      <label for="Avatar"> <img src= "ServletImages/img2.jpeg" width="50" 
+     height="50" ></label>
+    </div>
+
+    <div>
+      <input type="radio" name="Avatar" value="3">
+      <label for="Avatar"><img src= "ServletImages/img3.jpeg" width="50" 
+     height="50" ></label>
+    </div>
+</fieldset>
+
+
     <input type="text" name="name" placeholder="Name"><br>
     <input type="text" name="phone" placeholder="Phone number"><br>
     <input type="submit" value="Add">
